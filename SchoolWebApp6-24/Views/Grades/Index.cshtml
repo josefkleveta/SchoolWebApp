@@ -1,0 +1,25 @@
+﻿@using SchoolProject.ViewModels
+@model IEnumerable<GradesViewModel>
+<h1>List of all grades</h1>
+<br />
+<div>
+    <a class="btn btn-info" asp-controller="Grades" asp-action="Create">
+        Add a new grade
+    </a>
+</div>
+<hr />
+@foreach (var item in Model) {
+    <div class="border border-1 border-dark p-4">
+        <h5 class="fw-bold">@item.StudentName </h5>
+        <p>
+            @item.SubjectName: @item.Topic - @item.Mark <br>
+            @item.Date.ToShortDateString()
+        </p>
+        <form method="post">
+        <a class="btn btn-warning" asp-controller="Grades" asp-action="Update"
+           asp-route-id="@item.Id">Edit</a>
+            <button type="submit" class="btn btn-danger" asp-action="Delete" asp-controller="Grades"
+               asp-route-id="@item.Id">Delete</button>
+        </form>
+    </div>
+}
